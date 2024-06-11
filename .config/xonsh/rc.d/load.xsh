@@ -25,3 +25,4 @@ aliases["newecho"]="newEcho.xsh"
 aliases["protoncp"]="protonMove.xsh"
 aliases["dotfiles"]='/usr/local/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 aliases["autopush"]="autoPush.xsh"
+aliases["sshx"]="sshx.xsh"

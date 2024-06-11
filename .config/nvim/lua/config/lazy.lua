@@ -74,12 +74,22 @@ cmp.setup({
         fallback()
       end
     end,
+
+    ["<C-l>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.confirm({ select = true })
+      else
+        fallback()
+      end
+    end, { "i", "s", "c" }),
   },
   sources = cmp.config.sources({
+    { name = "copilot", group_index = 2 },
     { name = "nvim_lsp" },
     { name = "luasnip" },
   }, {
     { name = "buffer" },
   }),
 })
+require("copilot").setup({})
 -- require("Comment").setup()
