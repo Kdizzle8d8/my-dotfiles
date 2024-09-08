@@ -19,7 +19,6 @@ $PATH = ['/usr/local/bin',
 execx($(starship init xonsh))
 
 
-aliases["code"]="codium"
 aliases["nrp"]="newRepo.xsh"
 aliases["newecho"]="newEcho.xsh"
 aliases["protoncp"]="protonMove.xsh"
