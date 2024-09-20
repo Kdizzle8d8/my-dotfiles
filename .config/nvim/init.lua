@@ -56,7 +56,7 @@ require("lazy").setup("plugins", {
 })
 
 -- Set Gruvbox as the default colorscheme
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme catppuccin]])
 
 -- Setup formatting keybinding
 vim.api.nvim_create_autocmd("LspAttach", {

@@ -27,7 +27,7 @@ return {
                 mapping = cmp.mapping.preset.insert({
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                    ["<Tab>"] = cmp.mapping.confirm({ select = false }), -- Changed from <C-Tab> to <Tab>
+                    ["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Changed from <C-Tab> to <Tab>
                     ["<C-d>"] = cmp.mapping.scroll_docs(4),
                 }),
                 snippet = {
