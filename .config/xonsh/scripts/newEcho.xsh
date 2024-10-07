@@ -1,3 +1,5 @@
+#! /usr/local/bin/xonsh
+
 
 echo Creating new go backend....
 name = input("Name of new API (default: backend): ")

@@ -1,19 +1,20 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out,                            "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out,                            "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
+
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 vim.g.mapleader = " "
@@ -31,7 +32,9 @@ vim.opt.splitbelow = true -- Open horizontal splits below current window
 vim.opt.splitright = true -- Open vertical splits to the right of the current window
 
 -- Open netrw
-vim.keymap.set("n", "<leader>fw", ":Explore<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>fw", function()
+	require("oil").open()
+end, { desc = "Open oil.nvim file explorer" })
 
 -- Keymaps for easier split navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
@@ -51,24 +54,27 @@ vim.opt.softtabstop = 4  -- Number of spaces that a <Tab> counts for while perfo
 
 -- Setup lazy.nvim
 require("lazy").setup("plugins", {
-    install = { colorscheme = { "gruvbox" } },
-    checker = { enabled = true }, -- automatically check for plugin updates
+	install = { colorscheme = { "gruvbox" } },
+	checker = { enabled = true }, -- automatically check for plugin updates
 })
+
+-- Add oil.nvim configuration
+require("oil").setup()
 
 -- Set Gruvbox as the default colorscheme
 vim.cmd([[colorscheme catppuccin]])
 
 -- Setup formatting keybinding
 vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-        local bufnr = args.buf
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.supports_method("textDocument/formatting") then
-            vim.keymap.set("n", "<leader>cf", function()
-                vim.lsp.buf.format({ bufnr = bufnr, async = true })
-            end, { buffer = bufnr, desc = "Format buffer" })
-        end
-    end,
+	callback = function(args)
+		local bufnr = args.buf
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client.supports_method("textDocument/formatting") then
+			vim.keymap.set("n", "<leader>cf", function()
+				vim.lsp.buf.format({ bufnr = bufnr, async = true })
+			end, { buffer = bufnr, desc = "Format buffer" })
+		end
+	end,
 })
 
 -- Load options

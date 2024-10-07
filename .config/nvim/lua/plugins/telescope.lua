@@ -19,6 +19,8 @@ return {
         vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
         vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
         vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help tags" })
+        -- Browse function/variable references with telescope
+        vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "References" })
         -- Harpoon-Telescope integration
         local function toggle_telescope(harpoon_files)
             local file_paths = {}
