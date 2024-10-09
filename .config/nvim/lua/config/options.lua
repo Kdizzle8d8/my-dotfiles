@@ -1,6 +1,6 @@
 local opt = vim.opt
 
--- Line numbers
+-- Line numbersv
 opt.number = true
 opt.relativenumber = true
 
@@ -19,7 +19,9 @@ opt.termguicolors = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.wrap = false
+opt.textwidth = 100
 opt.cursorline = true
 opt.mouse = "a"
-
+opt.conceallevel = 2
 -- ... add any other options you want to set
+

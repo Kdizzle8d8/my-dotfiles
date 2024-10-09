@@ -19,7 +19,7 @@ return {
     },
     opts = {
         ui = {
-            enable = true, -- set to false to disable all additional syntax features
+            enable = false, -- set to false to disable all additional syntax features
             update_debounce = 200, -- update delay after a text change (in milliseconds)
             max_file_length = 5000, -- disable UI features for files with more than this many lines
             -- Define how various check-boxes are displayed
@@ -63,11 +63,11 @@ return {
         workspaces = {
             {
                 name = "personal",
-                path = "~/Documents/Obsidian",
+                path = "~/Documents/obsidian",
             },
             {
-                name = "/home/kdavis/Documents/Obsidian/School/History ",
-                path = "work",
+                name = "History",
+                path = "~/Documents/obsidian/School/History",
             },
         },
 
